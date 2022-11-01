@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.case4{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.img-slide{
+    position: relative;
+
+    
+}
+
+.img-slide img{
+    object-fit: cover;
+    height: 70vh;
+    border-radius: 1rem;
+    width: 90%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    margin-left: 5%;
+    transition: opacity 0.5s;
+}
+
+.img-slide img.active{
+    opacity: 1 ;
+}
+
+.next, .previous{
+    color: #494D5F;
+    font-size: 2rem;
+    position: absolute;
+    margin-top: 30%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.next {
+    right: .1rem;
+}
+
+.previous{
+    left: .5rem;
+}
+
+.center i{
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #fff;
+}
+#icone1,#icone2,#icone3,#icone4{
+    opacity: 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="case4">
+        <div class="center">
+        <div class="img-slide">
+            .di<img class="i_slide active" src="/akaly.jpg" alt="akaly" >
+            <img class="i_slide" src="/funny.jpg" alt="funny">
+
+            <div class="previous"><i class="fas fa-arrow-circle-left"></i></div>
+            <div class="next"><i class="fas fa-arrow-circle-right"></i></div>
+
+            <i class=""></i>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        
+var i_slide = document.getElementsByClassName('i_slide');
+
+var etape = 0;
+var nbr_img = i_slide.length;
+
+var next = document.querySelector('.next');
+var previous = document.querySelector('.previous')
+
+function removeActiveImage(){
+    for(var i = 0; i < nbr_img; i++){
+        i_slide[i].classList.remove('active');
+    }
+}
+
+next.addEventListener('click', ()=>{
+    etape++;
+    if (etape >= nbr_img){
+        etape = 0;
+    }
+    removeActiveImage();
+    i_slide[etape].classList.add('active');
+})
+
+previous.addEventListener('click', ()=>{
+    etape--;
+    if (etape < 0){
+        etape = nbr_img - 1;
+    }
+    removeActiveImage();
+    i_slide[etape].classList.add('active');
+})
+setInterval (function(){
+    etape++;
+    if (etape >= nbr_img){
+        etape = 0;
+    }
+    removeActiveImage();
+    i_slide[etape].classList.add('active');
+},7000)
+    </script>
+</body>
+</html>
